@@ -1,0 +1,12 @@
+{
+    "name": "ibu/dentalapp",
+    "description": "Application for dental students",
+    "license": "Apache2",
+    "authors": [
+        {
+            "name": "EdvinCama10",
+            "email": "edvincama00@gmail.com"
+        }
+    ],
+    "require": {}
+}

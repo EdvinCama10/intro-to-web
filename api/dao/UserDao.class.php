@@ -1,0 +1,29 @@
+<?php
+
+require_once dirname(__FILE__) . "/BaseDao.class.php";
+
+class UserDao extends BaseDao
+{
+    public function get_user_by_email($email)
+    {
+        return $this->query_unique("SELECT * FROM user WHERE Email = :email", ["email => $email"]);
+    }
+
+    public function get_user_by_id($id)
+    {
+        return $this->query_unique("SELECT * FROM user WHERE id = :id", ["id" => $id]);
+    }
+
+    public function add_user($user)
+    {
+        $insert = "";
+        $sql = "INSERT INTO user (Username, Email, FirstName, LastName, PhoneNumber, isBlocked, isActivated, CreatedAt, ActivatedAt) VALUES (:Username, :Email, :FirstName, :LastName, :PhoneNumber, :isBlocked, :isActivated, :CreatedAt, :ActivatedAt)";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute($user);
+    }
+
+    public function update_user($id, $user)
+    {
+
+    }
+}
