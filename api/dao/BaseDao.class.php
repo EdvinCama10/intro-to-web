@@ -4,7 +4,7 @@ require_once dirname(__FILE__) . "/../config.php";
 class BaseDao
 {
 
-    private $connection;
+    protected $connection;
 
     public function __construct()
     {
@@ -21,9 +21,19 @@ class BaseDao
 
     }
 
-    public function update()
+    public function update($table, $id, $entity, $id_column = "id")
     {
+        $query = "UPDATE ${table} SET";
+        foreach($entity as $username => $value){
+            $query .= $username ."= :". $username. ", ";
+        }
+        $query = substr($query, 0, -2);
+        $query .= " WHERE ${id_column} = :id";
 
+        $stmt = $this ->connection->prepare($query);
+        $entity['id'] = $id;
+        $stmt -> execute($entity);
+    
     }
 
     public function query($query, $params)

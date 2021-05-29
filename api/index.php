@@ -6,6 +6,6 @@ error_reporting(E_ALL);
 
 require_once dirname(__FILE__) . "/dao/BaseDao.class.php";
 
-$hamdo = new BaseDao();
+$test = new BaseDao();
 
 echo "Hello from API";
